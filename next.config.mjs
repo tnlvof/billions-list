@@ -4,12 +4,11 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "imagedelivery.net",
+        hostname: "specials-images.forbesimg.com",
+        port: "",
+        pathname: "/imageserve/**",
       },
     ],
-  },
-  redirects: async () => {
-    return [];
   },
 };
 

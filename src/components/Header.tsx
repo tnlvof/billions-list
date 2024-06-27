@@ -27,7 +27,7 @@ export const Navigation: FunctionComponent = () => {
   return (
     <nav>
       <div className="hidden md:flex items-center">
-        {menuItems.map((item) => (
+        {/* {menuItems.map((item) => (
           <div key={item.href} className="ml-4 md:ml-8">
             <a
               href={item.href}
@@ -40,7 +40,7 @@ export const Navigation: FunctionComponent = () => {
               {item.name}
             </a>
           </div>
-        ))}
+        ))} */}
       </div>
       <div className="md:hidden">
         <Sheet>

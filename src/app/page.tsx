@@ -1,22 +1,38 @@
-import { BlogPostsPreview } from "@/components/BlogPostPreview";
-import { BlogPostsPagination } from "@/components/BlogPostsPagination";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { wisp } from "@/lib/wisp";
+import { convertMillionToBillion, getAllBillionaires } from "@/lib/utils";
+import Image from "next/image";
+import Link from "next/link";
+const Page = async () => {
+  const data = await getAllBillionaires();
+  // console.log(data);
 
-const Page = async ({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | string[] | undefined };
-}) => {
-  const page = searchParams.page ? parseInt(searchParams.page as string) : 1;
-  const result = await wisp.getPosts({ limit: 6, page });
   return (
-    <div className="container mx-auto px-5 mb-10">
-      <Header />
-      <BlogPostsPreview posts={result.posts} />
-      <BlogPostsPagination pagination={result.pagination} />
-      <Footer />
+    <div className="container mx-auto mb-10">
+      <div className="grid grid-cols-4">
+        {data?.map((billionaire: any) => (
+          <Link href={`/person/${billionaire.id}`} key={billionaire.id}>
+            <div key={billionaire.id} className="mt-6">
+              <Image
+                className="rounded-sm"
+                src={billionaire?.squareImage}
+                width={250}
+                height={250}
+                alt={billionaire.name}
+                unoptimized
+              />
+              <h2 className="text-base font-bold">{billionaire.name}</h2>
+              <p>
+                <span className="text-sm text-gray-700 font-medium">
+                  {convertMillionToBillion(billionaire.netWorth)} Billion
+                </span>{" "}
+                /{" "}
+                <span className="text-sm text-gray-700">
+                  {billionaire.industries}
+                </span>
+              </p>
+            </div>
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };

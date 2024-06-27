@@ -1,10 +1,11 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { config } from "@/config";
-import { signOgImageUrl } from "@/lib/og-image";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
 
 const fontSans = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -18,12 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: config.blog.metadata.title.default,
     description: config.blog.metadata.description,
-    images: [
-      signOgImageUrl({
-        title: config.blog.name,
-      }),
-    ]
-  }
+  },
 };
 
 export default function RootLayout({
@@ -32,10 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="ko-kr">
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased max-w-6xl m-auto",
+          "min-h-screen bg-background font-sans antialiased max-w-6xl m-auto ",
           fontSans.variable
         )}
       >
@@ -45,7 +41,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Header />
           <main>{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
