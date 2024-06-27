@@ -10,7 +10,7 @@ const Page = async () => {
       <div className="grid grid-cols-4">
         {data?.map((billionaire: any) => (
           <Link href={`/person/${billionaire.id}`} key={billionaire.id}>
-            <div key={billionaire.id} className="mt-6">
+            <div key={billionaire.id} className="mb-6">
               <Image
                 className="rounded-sm"
                 src={billionaire?.squareImage}

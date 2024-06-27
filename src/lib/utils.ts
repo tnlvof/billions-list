@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import axios from "axios";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -12,12 +13,19 @@ export async function getAllBillionaires() {
 }
 
 export async function getBillionaireById(id: string) {
-  const response = await fetch(
-    `https://billions-api.nomadcoders.workers.dev/person/${id}`
-  );
+  try {
+    const response = await axios.get(
+      `https://billions-api.nomadcoders.workers.dev/person/${id}`
+    );
 
-  const data = await response.json();
-  return data;
+    // 응답 데이터 확인
+    // console.log("Response data:", response.data);
+
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    throw new Error("Failed to fetch data");
+  }
 }
 
 export const convertMillionToBillion = (millionValue: number): number => {
