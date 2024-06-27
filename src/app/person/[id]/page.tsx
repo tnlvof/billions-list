@@ -70,7 +70,7 @@ export default async function Page({ params }: { params: { id: string } }) {
                   <TableHead>Ticker</TableHead>
                   <TableHead>Company</TableHead>
                   <TableHead>Shares</TableHead>
-                  <TableHead>Price</TableHead>
+                  <TableHead>SharePrice</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>
